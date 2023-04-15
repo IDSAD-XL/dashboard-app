@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <div className="relative flex dark:bg-main-dark-bg">
+        <div className="relative flex overflow-hidden bg-main-bg dark:bg-main-dark-bg">
           <div className="fixed bottom-4 right-4" style={{ zIndex: 1000 }}>
             <TooltipComponent content="Settigs" position="TopCenter">
               <button
@@ -66,21 +66,28 @@ const App = () => {
             </TooltipComponent>
           </div>
           <motion.div
-            className="sidebar fixed bg-white dark:bg-secondary-dark-bg"
+            className="sidebar fixed w-72 bg-white dark:bg-secondary-dark-bg"
             animate={{
-              width: activeMenu
-                ? appScreen === 'mobile'
-                  ? '100%'
-                  : '18rem'
-                : 0,
+              left: activeMenu ? 0 : '-18rem',
+            }}
+            transition={{
+              ease: 'anticipate',
+              duration: 0.4,
             }}
           >
             <Sidebar />
           </motion.div>
-          <div
+          <motion.div
             className={`min-h-screen w-full bg-main-bg dark:bg-main-bg ${
               activeMenu ? 'md:ml-72' : 'flex-2'
             }`}
+            animate={{
+              marginLeft: activeMenu ? '18rem' : '0',
+            }}
+            transition={{
+              ease: 'easeInOut',
+              duration: 0.4,
+            }}
           >
             <div
               className={
@@ -89,7 +96,7 @@ const App = () => {
             >
               <Navbar />
             </div>
-          </div>
+          </motion.div>
           <div>
             <Routes>
               {/* dashboard  */}

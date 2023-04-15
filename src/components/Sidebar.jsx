@@ -27,50 +27,46 @@ const Sidebar = () => {
 
   return (
     <div className="ml-3 h-screen overflow-auto pb-10 md:overflow-hidden md:hover:overflow-auto">
-      {activeMenu && (
-        <>
-          <div className="mt-4 flex items-center justify-between">
-            <Link
-              to="/"
-              onClick={handleCloseSidebar}
-              className="ml-3 flex items-center gap-3 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white"
-            >
-              <SiShopware /> <span>Shoppy</span>
-            </Link>
-            <TooltipComponent content="Menu" position="BottomCenter">
-              <button
-                type="button"
-                onClick={() => {
-                  dispatch(closeMenu())
-                }}
-                className="block rounded-full p-3 text-xl hover:bg-light-gray lg:hidden"
+      <div className="mt-4 flex items-center justify-between">
+        <Link
+          to="/"
+          onClick={handleCloseSidebar}
+          className="ml-3 flex items-center gap-3 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white"
+        >
+          <SiShopware /> <span>Shoppy</span>
+        </Link>
+        <TooltipComponent content="Menu" position="BottomCenter">
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(closeMenu())
+            }}
+            className="mr-2 block rounded-full p-1 text-xl hover:bg-light-gray lg:hidden"
+          >
+            <MdOutlineCancel />
+          </button>
+        </TooltipComponent>
+      </div>
+      <div className="mt-10">
+        {links.map((link) => (
+          <div key={link.title}>
+            <p className="m-3 mt-4 uppercase text-gray-400">{link.title}</p>
+            {link.links.map((nestedLink) => (
+              <NavLink
+                to={`/${nestedLink.name}`}
+                key={nestedLink.name}
+                onClick={handleCloseSidebar}
+                className={({ isActive }) =>
+                  isActive ? activeLinkClassname : normalLinkClassname
+                }
               >
-                <MdOutlineCancel />
-              </button>
-            </TooltipComponent>
-          </div>
-          <div className="mt-10">
-            {links.map((link) => (
-              <div key={link.title}>
-                <p className="m-3 mt-4 uppercase text-gray-400">{link.title}</p>
-                {link.links.map((nestedLink) => (
-                  <NavLink
-                    to={`/${nestedLink.name}`}
-                    key={nestedLink.name}
-                    onClick={handleCloseSidebar}
-                    className={({ isActive }) =>
-                      isActive ? activeLinkClassname : normalLinkClassname
-                    }
-                  >
-                    {nestedLink.icon}
-                    <span className="capitalize">{nestedLink.name}</span>
-                  </NavLink>
-                ))}
-              </div>
+                {nestedLink.icon}
+                <span className="capitalize">{nestedLink.name}</span>
+              </NavLink>
             ))}
           </div>
-        </>
-      )}
+        ))}
+      </div>
     </div>
   )
 }
