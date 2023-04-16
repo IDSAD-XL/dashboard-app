@@ -33,7 +33,7 @@ const Sidebar = () => {
           onClick={handleCloseSidebar}
           className="ml-3 flex items-center gap-3 text-xl font-extrabold tracking-tight text-slate-900 dark:text-white"
         >
-          <SiShopware /> <span>Shoppy</span>
+          <SiShopware /> <span>Dashboard App</span>
         </Link>
         <TooltipComponent content="Menu" position="BottomCenter">
           <button

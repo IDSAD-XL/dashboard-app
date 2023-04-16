@@ -96,8 +96,7 @@ const App = () => {
             >
               <Navbar />
             </div>
-          </motion.div>
-          <div>
+
             <Routes>
               {/* dashboard  */}
               <Route path="/" element={<Ecommerce />} />
@@ -124,7 +123,7 @@ const App = () => {
               <Route path="/pyramid" element={<Pyramid />} />
               <Route path="/stacked" element={<Stacked />} />
             </Routes>
-          </div>
+          </motion.div>
         </div>
       </BrowserRouter>
     </div>
