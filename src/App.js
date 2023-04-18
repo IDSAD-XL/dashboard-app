@@ -6,7 +6,7 @@ import './App.css'
 import { TooltipComponent } from '@syncfusion/ej2-react-popups'
 import { FiSettings } from 'react-icons/fi'
 
-import { Navbar, Sidebar } from './components'
+import { Navbar, Sidebar, ThemeSettings } from './components'
 import {
   Ecommerce,
   Orders,
@@ -96,7 +96,7 @@ const App = () => {
             >
               <Navbar />
             </div>
-
+            <ThemeSettings />
             <Routes>
               {/* dashboard  */}
               <Route path="/" element={<Ecommerce />} />
