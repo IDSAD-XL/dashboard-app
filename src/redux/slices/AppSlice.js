@@ -3,8 +3,9 @@ import { themeColors } from '../../data/dummy'
 
 const initialState = {
   screen: 'desktop',
-  mode: true,
+  mode: 'light',
   accent: themeColors[0].color,
+  settingsOpen: false,
 }
 
 export const appSlice = createSlice({
@@ -19,20 +20,29 @@ export const appSlice = createSlice({
     },
     setAppMode: (state, action) => {
       state.mode = action.payload
-      localStorage.setItem('theme', action.payload)
+      localStorage.setItem('appMode', action.payload)
     },
     setAppAccent: (state, action) => {
-      state.accentColor = action.payload
-      localStorage.setItem('theme-accent', action.payload)
+      state.accent = action.payload
+      localStorage.setItem('appAccent', action.payload)
     },
     toggleAppMode: (state) => {
       state.mode = state.mode === 'light' ? 'dark' : 'light'
+      localStorage.setItem('appMode', state.mode)
+    },
+    toggleSettingsMenu: (state) => {
+      state.settingsOpen = !state.settingsOpen
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setAppScreen, setAppAccent, setAppMode, toggleAppMode } =
-  appSlice.actions
+export const {
+  setAppScreen,
+  setAppAccent,
+  setAppMode,
+  toggleAppMode,
+  toggleSettingsMenu,
+} = appSlice.actions
 
 export default appSlice.reducer

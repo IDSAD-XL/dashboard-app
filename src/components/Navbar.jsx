@@ -11,6 +11,7 @@ import { Cart, Chat, Notification, UserProfile } from '.'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../redux/slices/MenuSlice'
 import { setActiveNavbar } from '../redux/slices/NavbarSlice'
+import { APP_ACCENT_CSS_VAR } from '../utils/constants'
 
 const NavButton = ({ title, cb, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
@@ -40,7 +41,7 @@ const Navbar = () => {
         cb={() => {
           dispatch(toggleMenu())
         }}
-        color="blue"
+        color={APP_ACCENT_CSS_VAR}
         icon={<AiOutlineMenu />}
       />
       <div className="flex">
@@ -49,7 +50,7 @@ const Navbar = () => {
           cb={() => {
             dispatch(setActiveNavbar('cart'))
           }}
-          color="blue"
+          color={APP_ACCENT_CSS_VAR}
           icon={<FiShoppingCart />}
         />
         <NavButton
@@ -57,7 +58,7 @@ const Navbar = () => {
           cb={() => {
             dispatch(setActiveNavbar('chat'))
           }}
-          color="blue"
+          color={APP_ACCENT_CSS_VAR}
           dotColor="#03C9D7"
           icon={<BsChatLeft />}
         />
@@ -66,7 +67,7 @@ const Navbar = () => {
           cb={() => {
             dispatch(setActiveNavbar('notifications'))
           }}
-          color="blue"
+          color={APP_ACCENT_CSS_VAR}
           dotColor="#03C9D7"
           icon={<RiNotification3Line />}
         />

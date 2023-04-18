@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Button = ({ color, bgColor, size, text, borderRadius }) => {
+const Button = ({
+  color,
+  bgColor = 'var(--theme-accent)',
+  size,
+  text,
+  borderRadius,
+}) => {
   return (
     <button
       type="button"

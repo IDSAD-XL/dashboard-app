@@ -12,7 +12,6 @@ export const menuSlice = createSlice({
       state.open = !state.open
     },
     closeMenu: (state) => {
-      console.log(1)
       state.open = false
     },
     openMenu: (state) => {

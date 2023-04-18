@@ -26,12 +26,23 @@ import {
   ColorMapping,
 } from './pages'
 import { useDispatch, useSelector } from 'react-redux'
-import { setAppScreen } from './redux/slices/AppSlice'
+import {
+  setAppAccent,
+  setAppMode,
+  setAppScreen,
+  toggleSettingsMenu,
+} from './redux/slices/AppSlice'
+import { APP_ACCENT_CSS_VAR } from './utils/constants'
 
 const App = () => {
   const activeMenu = useSelector((state) => state.menu.open)
-  const appScreen = useSelector((state) => state.app.screen)
+  const appAccent = useSelector((state) => state.app.accent)
+  const appThemeMode = useSelector((state) => state.app.mode)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log(appAccent)
+  }, [appAccent])
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,8 +58,22 @@ const App = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const currentThemeColor = localStorage.getItem('appAccent')
+    const currentThemeMode = localStorage.getItem('appMode')
+    if (currentThemeColor) {
+      dispatch(setAppAccent(currentThemeColor))
+    }
+    if (currentThemeMode) {
+      dispatch(setAppMode(currentThemeMode))
+    }
+  }, [])
+
   return (
-    <div>
+    <div
+      className={`${appThemeMode === 'dark' ? 'dark' : 'light'}`}
+      style={{ '--theme-accent': appAccent }}
+    >
       <BrowserRouter>
         <div className="relative flex overflow-hidden bg-main-bg dark:bg-main-dark-bg">
           <div className="fixed bottom-4 right-4" style={{ zIndex: 1000 }}>
@@ -57,8 +82,11 @@ const App = () => {
                 type="button"
                 className="p-3 text-3xl text-white hover:bg-light-gray hover:drop-shadow-xl"
                 style={{
-                  background: 'blue',
+                  background: APP_ACCENT_CSS_VAR,
                   borderRadius: '50%',
+                }}
+                onClick={() => {
+                  dispatch(toggleSettingsMenu())
                 }}
               >
                 <FiSettings />
@@ -78,7 +106,7 @@ const App = () => {
             <Sidebar />
           </motion.div>
           <motion.div
-            className={`min-h-screen w-full bg-main-bg dark:bg-main-bg ${
+            className={`min-h-screen w-full bg-main-bg dark:bg-main-dark-bg ${
               activeMenu ? 'md:ml-72' : 'flex-2'
             }`}
             animate={{

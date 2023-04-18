@@ -14,8 +14,12 @@ import {
   stackedPrimaryXAxis,
   stackedPrimaryYAxis,
 } from '../../data/dummy'
+import { useSelector } from 'react-redux'
 
 const Stacked = ({ width, height }) => {
+  const currentMode = useSelector((state) => state.app.mode)
+  const currentAccent = useSelector((state) => state.app.accent)
+  const palette = [currentAccent, '#393b40', '#6FAAB0', '#C4C24A']
   return (
     <ChartComponent
       id="charts"
@@ -25,7 +29,8 @@ const Stacked = ({ width, height }) => {
       height={height}
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
-      // background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+      palettes={palette}
+      background={currentMode === 'dark' ? '#33373E' : '#fff'}
       legendSettings={{ background: 'white' }}
     >
       <Inject services={[StackingColumnSeries, Category, Legend, Tooltip]} />

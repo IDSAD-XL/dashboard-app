@@ -41,7 +41,7 @@ const Switch = ({ name, id, checked = false, cb }) => {
         }}
       >
         <motion.span
-          className="absolute flex items-center justify-center rounded-full bg-white"
+          className="relative flex items-center justify-center rounded-full bg-white"
           style={{
             y: 2,
             x: 2,

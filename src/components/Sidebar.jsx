@@ -6,6 +6,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { links } from '../data/dummy'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeMenu } from '../redux/slices/MenuSlice'
+import { APP_ACCENT_CSS_VAR } from '../utils/constants'
 
 const activeLinkClassname =
   'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2'
@@ -59,6 +60,9 @@ const Sidebar = () => {
                 className={({ isActive }) =>
                   isActive ? activeLinkClassname : normalLinkClassname
                 }
+                style={({ isActive }) => ({
+                  backgroundColor: isActive ? APP_ACCENT_CSS_VAR : '',
+                })}
               >
                 {nestedLink.icon}
                 <span className="capitalize">{nestedLink.name}</span>
