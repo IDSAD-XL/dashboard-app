@@ -36,13 +36,8 @@ import { APP_ACCENT_CSS_VAR } from './utils/constants'
 
 const App = () => {
   const activeMenu = useSelector((state) => state.menu.open)
-  const appAccent = useSelector((state) => state.app.accent)
-  const appThemeMode = useSelector((state) => state.app.mode)
+  const appState = useSelector((state) => state.app)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log(appAccent)
-  }, [appAccent])
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,10 +64,12 @@ const App = () => {
     }
   }, [])
 
+  useEffect(() => {})
+
   return (
     <div
-      className={`${appThemeMode === 'dark' ? 'dark' : 'light'}`}
-      style={{ '--theme-accent': appAccent }}
+      className={`${appState.mode === 'dark' ? 'dark' : 'light'}`}
+      style={{ '--theme-accent': appState.accent }}
     >
       <BrowserRouter>
         <div className="relative flex overflow-hidden bg-main-bg dark:bg-main-dark-bg">
@@ -94,9 +91,13 @@ const App = () => {
             </TooltipComponent>
           </div>
           <motion.div
-            className="sidebar fixed w-72 bg-white dark:bg-secondary-dark-bg"
+            className="sidebar fixed w-screen bg-white dark:bg-secondary-dark-bg md:w-72"
             animate={{
-              left: activeMenu ? 0 : '-18rem',
+              left: activeMenu
+                ? 0
+                : appState.screen === 'mobile'
+                ? '-100%'
+                : '-18rem',
             }}
             transition={{
               ease: 'anticipate',
@@ -110,7 +111,11 @@ const App = () => {
               activeMenu ? 'md:ml-72' : 'flex-2'
             }`}
             animate={{
-              marginLeft: activeMenu ? '18rem' : '0',
+              marginLeft: activeMenu
+                ? appState.screen === 'mobile'
+                  ? '0'
+                  : '18rem'
+                : '0',
             }}
             transition={{
               ease: 'easeInOut',
@@ -119,7 +124,7 @@ const App = () => {
           >
             <div
               className={
-                'navbar fixed w-full bg-main-bg dark:bg-main-dark-bg md:static'
+                'navbar fixed top-0 w-full bg-main-bg dark:bg-main-dark-bg md:static'
               }
             >
               <Navbar />

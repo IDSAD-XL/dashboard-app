@@ -1,12 +1,15 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 const MotionAppear = ({ className, delay = 0.1, children }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
   return (
     <motion.div
+      ref={ref}
       animate={{
-        opacity: 1,
-        x: 0,
-        rotateX: 0,
+        opacity: isInView && 1,
+        x: isInView && 0,
+        rotateX: isInView && 0,
       }}
       transition={{
         delay: delay,
@@ -23,7 +26,7 @@ const MotionAppear = ({ className, delay = 0.1, children }) => {
           ease: 'easeOut',
         },
       }}
-      className={className}
+      className={'motion-item' + className}
       style={{
         opacity: 0,
         x: 50,

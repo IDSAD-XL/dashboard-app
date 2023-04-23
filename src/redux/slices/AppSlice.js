@@ -14,7 +14,7 @@ export const appSlice = createSlice({
   reducers: {
     setAppScreen: (state, action) => {
       const w = action.payload
-      if (w < 760) state.screen = 'mobile'
+      if (w < 768) state.screen = 'mobile'
       else if (w < 1240) state.screen = 'tablet'
       else state.screen = 'desktop'
     },

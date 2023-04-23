@@ -11,12 +11,12 @@ import {
   SparklineAreaData,
   weeklyStats,
 } from '../data/dummy'
-import MotionAppear from '../components/MotionAppear'
 import { APP_ACCENT_CSS_VAR } from '../utils/constants'
 import { useSelector } from 'react-redux'
 import { IoIosMore } from 'react-icons/io'
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
 import product9 from '../data/product9.jpg'
+import MotionLayout from '../components/MotionLayout'
 
 const DropDown = ({ currentMode }) => (
   <div className="w-28 rounded-md border-1 border-color px-2 py-1">
@@ -35,10 +35,11 @@ const DropDown = ({ currentMode }) => (
 const Ecommerce = () => {
   const currentMode = useSelector((state) => state.app.mode)
   const currentColor = useSelector((state) => state.app.accent)
+
   return (
-    <div className="mt-24">
+    <MotionLayout className="mt-24">
       <div className="flex flex-wrap justify-center lg:flex-nowrap">
-        <MotionAppear className="m-3 h-44 w-full rounded-xl bg-white bg-cover bg-center bg-no-repeat p-8 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 lg:w-80">
+        <div className="motion-item m-3 h-44 w-full rounded-xl bg-white bg-cover bg-center bg-no-repeat p-8 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 lg:w-80">
           <div className="flex items-center justify-between">
             <div>
               <p className="font-bold text-gray-400">Earnings</p>
@@ -60,13 +61,12 @@ const Ecommerce = () => {
               size="md"
             />
           </div>
-        </MotionAppear>
+        </div>
         <div className="m-3 flex flex-wrap items-center justify-center gap-1">
-          {earningData.map((item, index) => (
-            <MotionAppear
-              delay={0.15 * (index + 1)}
+          {earningData.map((item) => (
+            <div
               key={item.title}
-              className="rounded-2xl bg-white p-3 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-56"
+              className="motion-item rounded-2xl bg-white p-3 pt-9 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-56"
             >
               <button
                 type="button"
@@ -86,76 +86,12 @@ const Ecommerce = () => {
                 </span>
               </p>
               <p className="mt-1 text-sm text-gray-400">{item.title}</p>
-            </MotionAppear>
+            </div>
           ))}
         </div>
       </div>
       <div className="flex flex-wrap justify-center gap-10">
-        <MotionAppear
-          delay={earningData.length * 0.15 + 0.1}
-          className="m-3 rounded-2xl bg-white p-4 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-780"
-        >
-          <div className="flex justify-between">
-            <p className="text-xl font-semibold">Revenue updates</p>
-            <div className="flex items-center gap-4">
-              <p className="flex items-center gap-2 text-gray-600 hover:drop-shadow-xl">
-                <span>
-                  <GoPrimitiveDot />
-                </span>
-                <span>Expense</span>
-              </p>
-              <p className="flex items-center gap-2 text-green-600 hover:drop-shadow-xl">
-                <span>
-                  <GoPrimitiveDot />
-                </span>
-                <span>Budget</span>
-              </p>
-            </div>
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-10">
-            <div className="m-4 border-r-1 border-color pr-10">
-              <div>
-                <p>
-                  <span className="text-3xl font-semibold">$93,438</span>
-                  <span className="hover:drop-shadow-xs ml-3 cursor-pointer rounded-full bg-green-400 p-1.5 text-sm text-white">
-                    23%
-                  </span>
-                </p>
-                <p className="mt-1 text-gray-500">Budget</p>
-              </div>
-              <div>
-                <p>
-                  <span className="text-3xl font-semibold">$48,438</span>
-                </p>
-                <p className="mt-1 text-gray-500">Expense</p>
-              </div>
-              <div className="mt-5">
-                <SparkLine
-                  id="line-sparkLine"
-                  type="Line"
-                  height="80px"
-                  width="250px"
-                  data={SparklineAreaData}
-                  color={APP_ACCENT_CSS_VAR}
-                  currentMode={currentMode}
-                />
-              </div>
-              <div className="mt-10">
-                <Button
-                  color="white"
-                  text="Download Report"
-                  borderRadius="10px"
-                />
-              </div>
-            </div>
-            <div>
-              <Stacked width="320px" height="360px" />
-            </div>
-          </div>
-        </MotionAppear>
-      </div>
-      <div className="flex flex-wrap justify-center gap-10">
-        <div className="m-3 rounded-2xl bg-white p-4 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-780  ">
+        <div className="motion-item m-3 rounded-2xl bg-white p-4 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-780  ">
           <div className="flex justify-between">
             <p className="text-xl font-semibold">Revenue Updates</p>
             <div className="flex items-center gap-4">
@@ -217,7 +153,7 @@ const Ecommerce = () => {
         </div>
         <div>
           <div
-            className=" m-3 rounded-2xl p-4 md:w-400"
+            className="motion-item m-3 rounded-2xl p-4 md:w-400"
             style={{ backgroundColor: currentColor }}
           >
             <div className="flex items-center justify-between ">
@@ -244,7 +180,7 @@ const Ecommerce = () => {
             </div>
           </div>
 
-          <div className="m-3 flex items-center justify-center gap-10 rounded-2xl bg-white p-8 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-400">
+          <div className="motion-item m-3 flex items-center justify-center gap-10 rounded-2xl bg-white p-8 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-400">
             <div>
               <p className="text-2xl font-semibold ">$43,246</p>
               <p className="text-gray-400">Yearly sales</p>
@@ -263,7 +199,7 @@ const Ecommerce = () => {
       </div>
 
       <div className="m-4 flex flex-wrap justify-center gap-10">
-        <div className="rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200">
+        <div className="motion-item rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200">
           <div className="flex items-center justify-between gap-2">
             <p className="text-xl font-semibold">Recent Transactions</p>
             <DropDown currentMode={currentMode} />
@@ -304,7 +240,7 @@ const Ecommerce = () => {
             <p className="text-sm text-gray-400">36 Recent Transactions</p>
           </div>
         </div>
-        <div className="w-96 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-760">
+        <div className="motion-item w-96 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-760">
           <div className="mb-10 flex items-center justify-between gap-2">
             <p className="text-xl font-semibold">Sales Overview</p>
             <DropDown currentMode={currentMode} />
@@ -316,7 +252,7 @@ const Ecommerce = () => {
       </div>
 
       <div className="flex flex-wrap justify-center">
-        <div className="m-3 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-400">
+        <div className="motion-item m-3 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200 md:w-400">
           <div className="flex justify-between">
             <p className="text-xl font-semibold">Weekly Stats</p>
             <button
@@ -363,7 +299,7 @@ const Ecommerce = () => {
             </div>
           </div>
         </div>
-        <div className="m-3 w-400 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200">
+        <div className="motion-item m-3 w-400 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200">
           <div className="flex justify-between">
             <p className="text-xl font-semibold">MedicalPro Branding</p>
             <button
@@ -429,7 +365,7 @@ const Ecommerce = () => {
             <p className="text-sm text-gray-400">36 Recent Transactions</p>
           </div>
         </div>
-        <div className="m-3 w-400 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200">
+        <div className="motion-item m-3 w-400 rounded-2xl bg-white p-6 dark:bg-secondary-dark-bg dark:text-gray-200">
           <div className="flex justify-between">
             <p className="text-xl font-semibold">Daily Activities</p>
             <button
@@ -462,7 +398,7 @@ const Ecommerce = () => {
           </div>
         </div>
       </div>
-    </div>
+    </MotionLayout>
   )
 }
 

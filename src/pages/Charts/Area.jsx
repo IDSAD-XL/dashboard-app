@@ -21,7 +21,7 @@ const Area = () => {
   const currentMode = useSelector((state) => state.app.mode)
 
   return (
-    <div className="m-4 mt-24 rounded-3xl bg-white p-10 dark:bg-secondary-dark-bg md:m-10">
+    <div className="m-4 mt-20 rounded-3xl bg-white p-10 dark:bg-secondary-dark-bg md:m-10 md:mt-0">
       <Header
         category="Area"
         title="Inflation Rate in percentage"
